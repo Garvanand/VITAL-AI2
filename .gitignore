@@ -20,6 +20,7 @@
 .DS_Store
 *.pem
 .idea
+.cursor
 
 # debug
 npm-debug.log*
