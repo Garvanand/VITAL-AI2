@@ -1,21 +1,10 @@
-# VitalAI - Personalized Healthcare & Fitness Platform
+# VitalAI - Health and Fitness Platform
 
-VitalAI is an AI-powered health and fitness platform that serves as your personalized healthcare helper and preventive care companion. The platform helps users proactively monitor their health metrics, track workouts, manage nutrition, and get personalized recipe suggestions including authentic Indian cuisine using Google's Gemini API.
+VitalAI is an AI-powered health and fitness platform that helps users track their workouts, monitor nutrition, and get personalized recipe suggestions including authentic Indian cuisine using Google's Gemini API.
 
-## Our Mission
-
-VitalAI aims to make preventive healthcare accessible to everyone by providing personalized insights, early warning indicators, and lifestyle recommendations that help users maintain optimal health and prevent potential issues before they arise.
-
-![Platform Hero Image](hero.png)
+![Platform Hero Image](../hero.png)
 
 ## Features
-
-### Preventive Health Monitoring
-
-- Early warning indicators for potential health issues
-- Personalized health insights based on your metrics
-- Trend analysis to detect changes in your health patterns
-- Proactive recommendations for maintaining optimal health
 
 ### Personalized Workout Recommendations
 
@@ -54,23 +43,11 @@ This platform is built with:
 - **CSS Framework:** [Tailwind CSS](https://tailwindcss.com/)
 - **Authentication:** [Supabase Auth](https://supabase.com/)
 - **Database:** [Supabase PostgreSQL](https://supabase.com/)
-- **AI Integration:**
-  - [Google Gemini API](https://ai.google.dev/) - For recipe suggestions and health insights
-  - [Machine Learning Models](https://tensorflow.org/) - For predictive health analytics
-- **Health Data Processing:** Custom algorithms for trend analysis and early warning systems
+- **AI Integration:** [Google Gemini API](https://ai.google.dev/)
 - **Animation:** [Framer Motion](https://www.framer.com/motion/)
 - **Icons:** [Lucide React](https://lucide.dev/)
 
 ## Flows & Usage Guide
-
-### Preventive Healthcare Flow
-
-1. **Health Assessment**: Complete an initial health assessment to establish your baseline
-2. **Personalized Dashboard**: View your key health indicators with personalized risk analysis
-3. **Trend Monitoring**: Track changes in vital metrics over time with AI-powered insights
-4. **Early Warnings**: Receive notifications for concerning trends or metrics that need attention
-5. **Preventive Recommendations**: Get personalized suggestions to improve or maintain health metrics
-6. **Progress Tracking**: Monitor how your preventive actions impact your health indicators
 
 ### Authentication Flow
 
@@ -239,19 +216,12 @@ The platform is optimized for deployment on Vercel:
 
 ## Troubleshooting
 
-### Recipe Suggestions
+If you encounter issues with the Indian cuisine recipe suggestions:
 
 1. **API Error 500**: Check your Gemini API key is valid and properly configured
 2. **No recipes displayed**: Verify your filters aren't too restrictive
 3. **Missing images**: Ensure the image URLs in the fallback data are accessible
 4. **Performance issues**: Consider implementing caching for API responses
-
-### Preventive Healthcare
-
-1. **Missing health metrics**: Ensure you've completed the initial health assessment
-2. **Inaccurate predictions**: Update your health profile with recent medical information
-3. **No trend data**: Allow at least 7-14 days of consistent tracking for trend analysis to appear
-4. **Sync issues**: Check connections with third-party health tracking devices or apps
 
 ## Contributing
 
