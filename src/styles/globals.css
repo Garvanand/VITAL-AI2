@@ -12,12 +12,15 @@
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(222.2 84% 4.9%);
   --primary: hsl(222.2 47.4% 11.2%);
+  --primary-rgb: 28, 36, 52;
   --primary-foreground: hsl(240 5% 96%);
   --secondary: hsl(210 40% 96.1%);
+  --secondary-rgb: 241, 245, 249;
   --secondary-foreground: hsl(222.2 47.4% 11.2%);
   --muted: hsl(210 40% 96.1%);
   --muted-foreground: hsl(215.4 16.3% 46.9%);
   --accent: hsl(210 40% 96.1%);
+  --accent-rgb: 241, 245, 249;
   --accent-foreground: hsl(222.2 47.4% 11.2%);
   --destructive: hsl(0 84.2% 60.2%);
   --destructive-foreground: hsl(210 40% 98%);
@@ -40,12 +43,15 @@
   --popover: hsl(222.2 84% 4.9%);
   --popover-foreground: hsl(210 40% 98%);
   --primary: hsl(210 40% 98%);
+  --primary-rgb: 241, 245, 249;
   --primary-foreground: hsl(222.2 47.4% 11.2%);
   --secondary: hsl(240, 5%, 80%);
+  --secondary-rgb: 196, 196, 204;
   --secondary-foreground: hsl(0 0% 100%);
   --muted: hsl(217.2 32.6% 17.5%);
   --muted-foreground: hsl(180 1% 48%);
   --accent: hsl(217.2 32.6% 17.5%);
+  --accent-rgb: 28, 39, 60;
   --accent-foreground: hsl(210 40% 98%);
   --destructive: hsl(0 62.8% 30.6%);
   --destructive-foreground: hsl(210 40% 98%);
@@ -121,5 +127,69 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Gradient animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Pulse animations for background elements */
+@keyframes pulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-20px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes floatDown {
+  0% {
+    transform: translateY(0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(20px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 0.5;
   }
 }
