@@ -18,15 +18,15 @@ export default async function SuccessPage() {
           <div className={'flex flex-col items-center text-white text-center'}>
             <Image
               className={'pb-12'}
-              src={'/assets/icons/logo/aeroedit-success-icon.svg'}
-              alt={'Success icon'}
+              src={'/assets/icons/logo/vital-ai-success-icon.svg'}
+              alt={'Vital-AI success icon'}
               height={96}
               width={96}
             />
             <h1 className={'text-4xl md:text-[80px] leading-9 md:leading-[80px] font-medium pb-6'}>
               Payment successful
             </h1>
-            <p className={'text-lg pb-16'}>Success! Your payment is complete, and you’re all set.</p>
+            <p className={'text-lg pb-16'}>Success! Your payment is complete, and you're all set.</p>
             <Button variant={'secondary'} asChild={true}>
               {data.user ? <Link href={'/dashboard'}>Go to Dashboard</Link> : <Link href={'/'}>Go to Home</Link>}
             </Button>
