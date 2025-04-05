@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Shield, Award, Users, TrendingUp, Brain, Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface TrustIndicatorProps {
   icon: React.ReactNode;
@@ -147,7 +148,7 @@ export function HeroSection() {
                 size="lg"
                 className="gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary shadow-md hover:shadow-lg transition-all duration-300"
               >
-                Daily Health Check
+                <Link href={'/workout'}>Daily Health Check</Link>
                 <ArrowRight className="h-4 w-4" />
               </Button>
               <Button

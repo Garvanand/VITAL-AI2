@@ -11,11 +11,15 @@ import { RecipeSuggestions } from './sections/recipe-suggestions';
 import { WaterIntakeTracker } from './sections/water-intake-tracker';
 import { HeartHealthAssessment } from './sections/heart-health-assessment';
 import { CalorieTracker } from './sections/calorie-tracker';
+import { WorkoutEquipmentSection } from './sections/workout-equipment-section';
+import { WorkoutTracker } from './sections/workout-tracker';
 import { Skeleton } from '@/components/ui/skeleton';
 import { HomeLoginStyleBackground } from '@/components/gradients/home-login-style-background';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export function WorkoutPage() {
   const [isClient, setIsClient] = useState(false);
+  const [activeTab, setActiveTab] = useState('dashboard');
 
   useEffect(() => {
     setIsClient(true);
@@ -52,21 +56,35 @@ export function WorkoutPage() {
             <PageHeader />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 space-y-6">
-              <WorkoutRecommendations />
-              <CalorieTracker />
-              <RecipeSuggestions />
-            </div>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+            <TabsList className="grid w-full grid-cols-2 mb-4">
+              <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+              <TabsTrigger value="tracker">Workout Tracker</TabsTrigger>
+            </TabsList>
 
-            <div className="space-y-6">
-              <MacroTracker />
-              <FastingTracker />
-              <WaterIntakeTracker />
-              <GoogleFitIntegration />
-              <HeartHealthAssessment />
-            </div>
-          </div>
+            <TabsContent value="dashboard" className="space-y-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 space-y-6">
+                  <WorkoutRecommendations />
+                  <CalorieTracker />
+                  <RecipeSuggestions />
+                </div>
+
+                <div className="space-y-6">
+                  <MacroTracker />
+                  <FastingTracker />
+                  <WaterIntakeTracker />
+                  <GoogleFitIntegration />
+                  <HeartHealthAssessment />
+                  <WorkoutEquipmentSection />
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="tracker">
+              <WorkoutTracker />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </WorkoutProvider>
