@@ -119,21 +119,21 @@ export function Testimonials() {
   const testimonials = [
     {
       quote:
-        "The AI's early detection capabilities have helped us identify several cancer cases in early stages, significantly improving patient outcomes.",
-      name: 'Dr. Sarah Chen',
-      title: 'Oncologist, Memorial Hospital',
+        "The AI's early detection capabilities have helped us identify several cases in early stages, significantly improving patient outcomes.",
+      name: 'Sujal Sakhare',
+      title: 'Student , Researcher',
     },
     {
       quote:
-        "As a diagnostician, HealthHype's AI has become an invaluable second opinion. The 91% accuracy rate has been consistent with our experience.",
-      name: 'Dr. Michael Rodriguez',
-      title: 'Chief of Diagnostics, City Medical Center',
+        'As a diagnostician, Vital-AI has become an invaluable second opinion. The 91% accuracy rate has been consistent with our experience.',
+      name: 'Garv Anand',
+      title: 'Student , ML/DL Enthusiast',
     },
     {
       quote:
         "The real-time analysis has revolutionized our emergency department's workflow, allowing us to prioritize critical cases more effectively.",
-      name: 'Dr. Emily Johnson',
-      title: 'Emergency Medicine, University Hospital',
+      name: 'Harshit Chakravarti',
+      title: 'Student, Thought Leader',
     },
   ];
 

@@ -6,7 +6,7 @@ import * as React from 'react';
 import type { ToastActionElement, ToastProps } from '@/components/ui/toast';
 
 const TOAST_LIMIT = 5;
-const TOAST_REMOVE_DELAY = 1000000;
+const TOAST_REMOVE_DELAY = 1000;
 
 type ToasterToast = ToastProps & {
   id: string;
@@ -43,11 +43,11 @@ type Action =
     }
   | {
       type: ActionType['DISMISS_TOAST'];
-      toastId?: ToasterToast['id'];
+      toastId?: string;
     }
   | {
       type: ActionType['REMOVE_TOAST'];
-      toastId?: ToasterToast['id'];
+      toastId?: string;
     };
 
 interface State {

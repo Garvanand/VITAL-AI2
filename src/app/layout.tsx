@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import { UserProvider } from '@/contexts/UserContext';
 import NavBarWithUser from '@/components/navigation/NavBarWithUser';
+import ClientServiceInitializer from '@/components/common/client-service-initializer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -195,6 +196,8 @@ export default function RootLayout({
           />
           {children}
           <Toaster />
+          {/* Service initializer component */}
+          <ClientServiceInitializer />
         </UserProvider>
       </body>
     </html>

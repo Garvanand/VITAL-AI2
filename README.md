@@ -273,3 +273,42 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Supabase for authentication and database
 - Next.js team for the amazing framework
 - All open-source contributors whose libraries made this possible
+
+## Setting Up Google Gemini API
+
+The nutrition and recipe features require a valid Google Gemini API key:
+
+1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Sign in with your Google account
+3. Click "Create API Key" to generate a new key
+4. Copy the API key
+5. Add it to your `.env.local` file:
+   ```
+   GEMINI_API_KEY=your_api_key_here
+   ```
+
+The API key should start with "AIzaSy" and be about 39 characters long.
+
+### Troubleshooting Nutrition Route
+
+If you're seeing issues with the nutrition page:
+
+1. **No recipes or mock data**:
+
+   - Make sure your Gemini API key is correctly set in `.env.local`
+   - Check browser console for error messages
+   - Verify you have a stable internet connection
+
+2. **API Key Issues**:
+
+   - Ensure your API key is in the correct format
+   - Check that you haven't exceeded the free tier limits
+   - Verify the API key has been activated (it may take a few minutes after creation)
+
+3. **Parse Errors**:
+
+   - If you receive "Failed to parse AI response" errors, try simplifying your ingredient list
+   - Use common ingredients that are more likely to return valid recipes
+
+4. **Restart the Server**:
+   - After updating your API key, restart the development server with `npm run dev`
