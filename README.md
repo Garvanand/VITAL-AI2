@@ -1,4 +1,20 @@
 # Vital AI - Health & Wellness Platform
+![Screenshot 2025-04-05 231533](https://github.com/user-attachments/assets/957d117b-083a-479f-8061-23e353ab978b)
+
+
+![Screenshot 2025-04-05 231727-min](https://github.com/user-attachments/assets/b22b5059-7c8b-4c84-aaee-8a72871a6b1d)
+
+
+![Screenshot 2025-04-05 231959-min](https://github.com/user-attachments/assets/3dfa1aeb-1552-4f41-9f84-83e17e6e605e)
+
+
+
+![Screenshot 2025-04-05 232050-min](https://github.com/user-attachments/assets/bf046a0e-7365-4253-a3d9-fe4fdc765ecb)
+
+
+
+
+
 
 - Personalized meal suggestions with complete nutritional information
 - **Indian Cuisine Focus** with authentic recipes using Google's Gemini API
