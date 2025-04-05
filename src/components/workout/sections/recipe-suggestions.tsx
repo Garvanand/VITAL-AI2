@@ -552,12 +552,12 @@ export function RecipeSuggestions() {
 
                       <div className="flex flex-wrap gap-1 mt-auto">
                         {recipe.tags.slice(0, 3).map((tag) => (
-                          <Badge key={tag} variant="secondary" className="text-xs">
+                          <Badge key={tag} variant="secondary" className="text-xs text-black">
                             {tag.replace('-', ' ')}
                           </Badge>
                         ))}
                         {recipe.tags.length > 3 && (
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="text-xs text-black">
                             +{recipe.tags.length - 3}
                           </Badge>
                         )}
@@ -628,7 +628,7 @@ export function RecipeSuggestions() {
 
                         <div className="flex flex-wrap gap-1 mb-6">
                           {selectedRecipe.tags.map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-xs">
+                            <Badge key={tag} variant="secondary" className="text-xs text-black">
                               {tag.replace('-', ' ')}
                             </Badge>
                           ))}
