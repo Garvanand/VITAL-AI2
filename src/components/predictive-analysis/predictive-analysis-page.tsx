@@ -13,94 +13,19 @@ import { MentalHealthAssessment } from '@/components/predictive-analysis/mental-
 import { SkinDiseaseAssessment } from '@/components/predictive-analysis/skin-disease/skin-disease-assessment';
 import { AllergyManagement } from '@/components/predictive-analysis/allergy/allergy-management';
 import { HomeLoginStyleBackground } from '@/components/gradients/home-login-style-background';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Float, Text, Trail, MeshDistortMaterial } from '@react-three/drei';
+// Temporarily commenting out the 3D-related imports to fix build issues
+// import { Canvas } from '@react-three/fiber';
+// import { OrbitControls, useGLTF, Float, Text, Trail, MeshDistortMaterial } from '@react-three/drei';
 
-// Create medicine floating model with distortion effect
-function FloatingMedical() {
-  return (
-    <Float speed={1.5} rotationIntensity={0.7} floatIntensity={0.7}>
-      <mesh>
-        <sphereGeometry args={[0.8, 32, 32]} />
-        <MeshDistortMaterial color="#4d94ff" speed={2.5} distort={0.3} wireframe />
-      </mesh>
-    </Float>
-  );
-}
-
-// Create DNA model that rotates with trail effect
-function DNAModel() {
-  const count = 10;
-  const gap = 0.2;
-
-  return (
-    <group position={[0, 0, 0]}>
-      <Trail width={1} color="#ffffff" attenuation={(t) => t * t}>
-        {Array.from({ length: count }).map((_, i) => (
-          <group key={i} position={[0, i * gap - (count * gap) / 2, 0]} rotation={[0, i * 0.2, 0]}>
-            <mesh position={[0.5, 0, 0]}>
-              <sphereGeometry args={[0.1, 16, 16]} />
-              <meshStandardMaterial color="#fff800" emissive="#ffb700" emissiveIntensity={0.5} />
-            </mesh>
-            <mesh position={[-0.5, 0, 0]}>
-              <sphereGeometry args={[0.1, 16, 16]} />
-              <meshStandardMaterial color="#4d94ff" emissive="#0066ff" emissiveIntensity={0.5} />
-            </mesh>
-            <mesh>
-              <cylinderGeometry args={[0.02, 0.02, 1, 8]} />
-              <meshStandardMaterial color="#ffffff" opacity={0.6} transparent />
-            </mesh>
-          </group>
-        ))}
-      </Trail>
-    </group>
-  );
-}
-
-// Floating text for 3D scene
-function FloatingText({ text, position, color }) {
-  return (
-    <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
-      <Text
-        position={position}
-        color={color}
-        fontSize={0.15}
-        font="/fonts/inter-var.woff"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {text}
-      </Text>
-    </Float>
-  );
-}
-
-// 3D Scene Component with additional elements
+// Placeholder for 3D Scene
 function Scene() {
   return (
-    <Canvas className="canvas" camera={{ position: [0, 0, 5] }}>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1.5} />
-      <spotLight position={[-10, -10, -10]} intensity={0.5} color="#4d94ff" />
-
-      <group position={[-2, 0, 0]}>
-        <FloatingMedical />
-        <FloatingText text="AI Analysis" position={[0, 1.5, 0]} color="#ffffff" />
-      </group>
-
-      <group position={[2, 0, -2]} rotation={[0, Math.PI / 4, 0]}>
-        <DNAModel />
-        <FloatingText text="Health Data" position={[0, -1.5, 0]} color="#ffffff" />
-      </group>
-
-      <OrbitControls
-        enableZoom={false}
-        autoRotate
-        autoRotateSpeed={1.5}
-        maxPolarAngle={Math.PI / 1.8}
-        minPolarAngle={Math.PI / 3}
-      />
-    </Canvas>
+    <div className="w-full h-[300px] flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/20 to-indigo-500/20">
+      <div className="text-center">
+        <h3 className="text-xl font-semibold mb-2">3D Visualization</h3>
+        <p className="text-sm text-muted-foreground">3D visualization temporarily disabled</p>
+      </div>
+    </div>
   );
 }
 

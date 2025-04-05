@@ -23,6 +23,8 @@
     "*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "@hookform/resolvers": "^5.0.1",
     "@paddle/paddle-js": "^1.4.0",
     "@paddle/paddle-node-sdk": "^2.5.1",
     "@radix-ui/react-accordion": "^1.2.3",
@@ -47,6 +49,7 @@
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.4",
     "@tanstack/react-table": "^8.21.2",
+    "@types/uuid": "^10.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -57,12 +60,16 @@
     "next": "15.2.4",
     "next-auth": "^4.24.11",
     "next-themes": "^0.4.6",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.55.0",
     "react-icons": "^5.5.0",
+    "scheduler": "^0.26.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.175.0"
+    "three": "^0.175.0",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

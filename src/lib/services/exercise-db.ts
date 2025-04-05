@@ -36,11 +36,19 @@ export async function getWorkoutEquipment(): Promise<string[]> {
   try {
     console.log('Fetching workout equipment list');
 
+    const apiKey = process.env.NEXT_PUBLIC_RAPIDAPI_KEY || '';
+
+    // Check if API key is missing or empty
+    if (!apiKey || apiKey === 'your_api_key_here') {
+      console.warn('RapidAPI key is missing or invalid. Using mock data instead.');
+      return MOCK_EQUIPMENT;
+    }
+
     const options = {
       method: 'GET',
       headers: {
         'x-rapidapi-host': 'exercise-db-fitness-workout-gym.p.rapidapi.com',
-        'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY || '',
+        'x-rapidapi-key': apiKey,
       },
     };
 
@@ -48,7 +56,16 @@ export async function getWorkoutEquipment(): Promise<string[]> {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(`API error (${response.status}):`, errorText);
+      const status = response.status;
+
+      // Handle specific error cases
+      if (status === 401) {
+        console.error('Invalid RapidAPI key. Please check your credentials in .env.local');
+      } else if (status === 429) {
+        console.error('RapidAPI rate limit exceeded. Consider upgrading your plan or reducing request frequency.');
+      } else {
+        console.error(`API error (${status}):`, errorText);
+      }
 
       // Return mock data when the API fails
       console.log('Using mock equipment data as fallback');

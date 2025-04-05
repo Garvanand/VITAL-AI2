@@ -86,6 +86,7 @@ const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Predictive Analysis', href: '/predictive-analysis' },
   { label: 'About', href: '/about' },
+  // { label: 'Indian Cuisine', href: '/indian-cuisine' },
   {
     label: 'Help',
     href: '/help',
