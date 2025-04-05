@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+
 import '../../styles/home-page.css';
 import { LocalizationBanner } from '@/components/home/header/localization-banner';
 import { HeroSection } from '@/components/home/hero-section/hero-section';

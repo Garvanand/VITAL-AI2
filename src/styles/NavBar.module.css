@@ -14,7 +14,9 @@
 
 .navLink {
   position: relative;
-  transition: color 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .navLink::after {
@@ -24,20 +26,46 @@
   height: 2px;
   bottom: -2px;
   left: 50%;
-  background-color: var(--primary);
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
   transition: all 0.3s ease;
+  transform: translateX(-50%);
+  opacity: 0.8;
+  border-radius: 2px;
+}
+
+.navLink:hover {
+  transform: translateY(-1px);
 }
 
 .navLink:hover::after {
   width: 100%;
-  left: 0;
+}
+
+.activeLink {
+  font-weight: 500;
 }
 
 .activeLink::after {
   width: 100%;
-  left: 0;
+  opacity: 1;
 }
 
+/* Button glow effect for sign-in button */
+.buttonGlow {
+  box-shadow: 0 0 10px 2px rgba(99, 102, 241, 0.3);
+}
+
+/* Logo shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Mobile menu animations */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -57,5 +85,21 @@
   to {
     opacity: 0;
     transform: scaleY(0);
+  }
+}
+
+/* Pulse animation for notification */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
   }
 }
