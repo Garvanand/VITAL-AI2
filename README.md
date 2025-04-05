@@ -1,29 +1,5 @@
 # Vital AI - Health & Wellness Platform
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
-[![Supabase](https://img.shields.io/badge/Supabase-Database-green?style=flat-square&logo=supabase)](https://supabase.io/)
-[![Google Gemini](https://img.shields.io/badge/Google-Gemini_API-4285F4?style=flat-square&logo=google)](https://ai.google.dev/)
-![Screenshot 2025-04-05 231533](https://github.com/user-attachments/assets/69725033-1cd7-4ef6-a5a4-126669ac3f4a)
-
-![image](https://github.com/user-attachments/assets/e23c9d5e-a681-4cfe-8567-77f3c98d9929)
-
-![image](https://github.com/user-attachments/assets/e0224d74-e68f-4a04-8784-03438fad0218)
-
-![image](https://github.com/user-attachments/assets/ec7b0b48-d8e0-43f0-9277-0565d0adb535)
-
-## Core Features
-
-### Workout Planning
-
-- Equipment-based exercise suggestions
-- Progress monitoring with adaptive difficulty adjustment
-- Google Fit integration for holistic activity tracking
-
-### Nutrition Management
-
 - Personalized meal suggestions with complete nutritional information
 - **Indian Cuisine Focus** with authentic recipes using Google's Gemini API
 - Advanced filtering by diet type, spice level, and nutritional needs
@@ -102,3 +78,53 @@ The Indian cuisine feature showcases authentic recipes with proper regional clas
 The recipe system includes a robust fallback mechanism that serves curated content when API services are unavailable, ensuring users always have access to quality recipes.
 
 ### Predictive Health Analysis
+
+The platform's predictive health analysis module evaluates various health markers to identify potential risks before they become problematic:
+
+- Diabetes risk assessment based on lifestyle factors and metrics
+- Cardiovascular health analysis with personalized recommendations
+- Mental health monitoring with stress and sleep quality insights
+- Skin condition analysis through visual pattern recognition
+- Allergy risk evaluation based on environmental and genetic factors
+
+Each analysis module provides actionable insights rather than just raw data, helping users make meaningful lifestyle adjustments.
+
+## Project Structure
+
+The application follows a modular architecture for maintainability and scalability:
+
+- `/src/components` - UI components organized by feature
+- `/src/app` - Next.js app router pages and API routes
+- `/src/lib` - Shared utilities, services, and API clients
+- `/src/contexts` - React context providers for state management
+- `/src/data` - Static data and fallback content
+- `/src/styles` - Global styles and theme configuration
+- `/supabase` - Database schema and migration scripts
+
+## API Integration
+
+### Google Gemini API
+
+Used for generating personalized recipe suggestions and health insights. Set up your API key in the `.env.local` file:
+
+```
+GEMINI_API_KEY=your_api_key_here
+```
+
+### Workout Database (RapidAPI)
+
+Provides exercise information and workout plans. Configure in `.env.local`:
+
+```
+NEXT_PUBLIC_RAPIDAPI_KEY=your_api_key_here
+```
+
+## Troubleshooting
+
+### API Connection Issues
+
+If you experience problems with the Gemini API:
+
+1. Verify your API key is correctly set in `.env.local`
+2. Check your API quota and usage limits
+3. Test the connection using the diagnostic tools in `/src/lib/api/gemini-test.ts`
