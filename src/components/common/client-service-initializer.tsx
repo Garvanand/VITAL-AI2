@@ -2,10 +2,11 @@
 
 import { useEffect } from 'react';
 import { initClientServices } from '@/lib/init-services';
+import { FloatingChatButton } from '@/components/chat/FloatingChatButton';
 
 /**
  * This component initializes client-side services when mounted.
- * It renders nothing in the DOM.
+ * It also renders the global floating chat button.
  */
 export default function ClientServiceInitializer() {
   useEffect(() => {
@@ -13,6 +14,6 @@ export default function ClientServiceInitializer() {
     initClientServices();
   }, []);
 
-  // Return null as this component doesn't render anything
-  return null;
+  // Return the floating chat button component for global availability
+  return <FloatingChatButton />;
 }

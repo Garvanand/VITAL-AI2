@@ -15,8 +15,8 @@ export function AboutPage() {
 
       {/* Hero Section */}
       <div className="container mx-auto px-4 pt-16 pb-8 relative z-10 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 text-transparent bg-clip-text mb-4">
-          About VitalAI
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white-400 to-cyan-100 text-transparent bg-clip-text mb-4">
+          About Vital-AI
         </h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
           Empowering individuals to take control of their health through AI-powered insights, personalized
@@ -143,8 +143,8 @@ export function AboutPage() {
                 <div className="rounded-full bg-gradient-to-b from-indigo-200 to-indigo-400 w-[120px] h-[120px] mx-auto mb-4 flex items-center justify-center">
                   <Users className="h-10 w-10 text-indigo-900/50" />
                 </div>
-                <h3 className="font-medium">Dr. Samantha Chen</h3>
-                <p className="text-sm text-muted-foreground">Chief Medical Officer</p>
+                <h3 className="font-medium">Garv Anand</h3>
+                <p className="text-sm text-muted-foreground">Student</p>
               </div>
 
               {/* Team Member 2 */}
@@ -152,8 +152,8 @@ export function AboutPage() {
                 <div className="rounded-full bg-gradient-to-b from-cyan-200 to-cyan-400 w-[120px] h-[120px] mx-auto mb-4 flex items-center justify-center">
                   <Users className="h-10 w-10 text-cyan-900/50" />
                 </div>
-                <h3 className="font-medium">Alex Rodriguez</h3>
-                <p className="text-sm text-muted-foreground">Chief Technology Officer</p>
+                <h3 className="font-medium">Sujal Sakhare</h3>
+                <p className="text-sm text-muted-foreground">Student</p>
               </div>
 
               {/* Team Member 3 */}
@@ -161,8 +161,8 @@ export function AboutPage() {
                 <div className="rounded-full bg-gradient-to-b from-purple-200 to-purple-400 w-[120px] h-[120px] mx-auto mb-4 flex items-center justify-center">
                   <Users className="h-10 w-10 text-purple-900/50" />
                 </div>
-                <h3 className="font-medium">Maya Patel</h3>
-                <p className="text-sm text-muted-foreground">Head of AI Research</p>
+                <h3 className="font-medium">Harshit Chakravarti</h3>
+                <p className="text-sm text-muted-foreground">Student</p>
               </div>
 
               {/* Team Member 4 */}
@@ -170,8 +170,8 @@ export function AboutPage() {
                 <div className="rounded-full bg-gradient-to-b from-green-200 to-green-400 w-[120px] h-[120px] mx-auto mb-4 flex items-center justify-center">
                   <Users className="h-10 w-10 text-green-900/50" />
                 </div>
-                <h3 className="font-medium">James Wilson</h3>
-                <p className="text-sm text-muted-foreground">Chief Product Officer</p>
+                <h3 className="font-medium">Arjun Chaudhary</h3>
+                <p className="text-sm text-muted-foreground">Student</p>
               </div>
             </div>
           </CardContent>
@@ -179,7 +179,7 @@ export function AboutPage() {
       </div>
 
       {/* Call to Action */}
-      <div className="container mx-auto px-4 py-12 relative z-10">
+      {/* <div className="container mx-auto px-4 py-12 relative z-10">
         <Card className="bg-gradient-to-r from-indigo-600 to-cyan-600 text-white border-0 shadow-xl">
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">Ready to Take Control of Your Health?</h2>
@@ -203,7 +203,7 @@ export function AboutPage() {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </div> */}
 
       <div className="mt-8">
         <Footer />

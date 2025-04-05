@@ -39,13 +39,13 @@ export function GoogleFitIntegration() {
   };
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow-sm">
+    <div className="p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-border shadow-sm">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <svg viewBox="0 0 24 24" className="w-5 h-5 text-blue-500" fill="currentColor">
+          <svg viewBox="0 0 24 24" className="w-5 h-5 text-primary" fill="currentColor">
             <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-1-11h2v7h-2zm0-3h2v2h-2z" />
           </svg>
-          <h3 className="text-lg font-medium">Google Fit</h3>
+          <h3 className="text-lg font-medium text-foreground">Google Fit</h3>
         </div>
 
         {googleFit.connected ? (
@@ -58,7 +58,7 @@ export function GoogleFitIntegration() {
               variant="ghost"
               size="sm"
               onClick={handleDisconnect}
-              className="text-red-500 hover:text-red-700 hover:bg-red-50"
+              className="text-red-500 hover:text-red-400 hover:bg-red-500/10"
             >
               Disconnect
             </Button>
@@ -68,14 +68,14 @@ export function GoogleFitIntegration() {
 
       {!googleFit.connected ? (
         <div className="text-center py-6">
-          <div className="bg-blue-50 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-            <LinkIcon className="w-8 h-8 text-blue-500" />
+          <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+            <LinkIcon className="w-8 h-8 text-primary" />
           </div>
-          <h4 className="text-lg font-medium mb-2">Connect to Google Fit</h4>
-          <p className="text-gray-500 mb-4 max-w-md mx-auto">
+          <h4 className="text-lg font-medium mb-2 text-foreground">Connect to Google Fit</h4>
+          <p className="text-muted-foreground mb-4 max-w-md mx-auto">
             Connect your Google Fit account to automatically sync your activity data and track your progress.
           </p>
-          <Button onClick={handleConnect} disabled={isLoading} className="gap-2">
+          <Button onClick={handleConnect} disabled={isLoading} className="gap-2 bg-primary hover:bg-primary/90">
             {isLoading ? (
               <RefreshCw className="w-4 h-4 animate-spin" />
             ) : (
@@ -92,12 +92,12 @@ export function GoogleFitIntegration() {
       ) : (
         <div>
           <div className="flex items-center mb-4">
-            <div className="bg-green-50 rounded-full p-2">
-              <BadgeCheck className="w-5 h-5 text-green-500" />
+            <div className="bg-primary/10 rounded-full p-2">
+              <BadgeCheck className="w-5 h-5 text-primary" />
             </div>
             <div className="ml-3">
-              <div className="text-sm font-medium">Connected to Google Fit</div>
-              <div className="text-xs text-gray-500">Last synced: {new Date().toLocaleTimeString()}</div>
+              <div className="text-sm font-medium text-foreground">Connected to Google Fit</div>
+              <div className="text-xs text-muted-foreground">Last synced: {new Date().toLocaleTimeString()}</div>
             </div>
           </div>
 
@@ -106,59 +106,59 @@ export function GoogleFitIntegration() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-gray-50 rounded-lg p-4 text-center"
+              className="bg-card/30 backdrop-blur-sm rounded-lg p-4 text-center border border-border/50"
             >
               <div className="flex justify-center mb-2">
-                <Footprints className="w-6 h-6 text-blue-500" />
+                <Footprints className="w-6 h-6 text-primary" />
               </div>
-              <div className="font-mono text-xl font-bold">{googleFit.steps.toLocaleString()}</div>
-              <div className="text-xs text-gray-500 mt-1">Steps</div>
+              <div className="font-mono text-xl font-bold text-foreground">{googleFit.steps.toLocaleString()}</div>
+              <div className="text-xs text-muted-foreground mt-1">Steps</div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="bg-gray-50 rounded-lg p-4 text-center"
+              className="bg-card/30 backdrop-blur-sm rounded-lg p-4 text-center border border-border/50"
             >
               <div className="flex justify-center mb-2">
-                <Flame className="w-6 h-6 text-orange-500" />
+                <Flame className="w-6 h-6 text-orange-400" />
               </div>
-              <div className="font-mono text-xl font-bold">{googleFit.calories.toLocaleString()}</div>
-              <div className="text-xs text-gray-500 mt-1">Calories Burned</div>
+              <div className="font-mono text-xl font-bold text-foreground">{googleFit.calories.toLocaleString()}</div>
+              <div className="text-xs text-muted-foreground mt-1">Calories Burned</div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.2 }}
-              className="bg-gray-50 rounded-lg p-4 text-center"
+              className="bg-card/30 backdrop-blur-sm rounded-lg p-4 text-center border border-border/50"
             >
               <div className="flex justify-center mb-2">
-                <Timer className="w-6 h-6 text-purple-500" />
+                <Timer className="w-6 h-6 text-primary" />
               </div>
-              <div className="font-mono text-xl font-bold">{googleFit.activeMinutes}</div>
-              <div className="text-xs text-gray-500 mt-1">Active Minutes</div>
+              <div className="font-mono text-xl font-bold text-foreground">{googleFit.activeMinutes}</div>
+              <div className="text-xs text-muted-foreground mt-1">Active Minutes</div>
             </motion.div>
           </div>
 
           <div className="text-center mt-6">
-            <div className="text-sm text-gray-500 mb-2">Your daily goal: 10,000 steps</div>
-            <div className="h-2 bg-gray-100 rounded-full mb-2">
+            <div className="text-sm text-muted-foreground mb-2">Your daily goal: 10,000 steps</div>
+            <div className="h-2 bg-card/50 rounded-full mb-2">
               <motion.div
-                className="h-2 bg-blue-500 rounded-full"
+                className="h-2 bg-primary rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${Math.min(100, (googleFit.steps / 10000) * 100)}%` }}
                 transition={{ duration: 0.5 }}
               />
             </div>
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-muted-foreground">
               {Math.round((googleFit.steps / 10000) * 100)}% of daily goal completed
             </div>
           </div>
 
           {googleFit.steps < 5000 && (
-            <div className="flex items-center mt-4 p-3 bg-yellow-50 text-yellow-700 rounded-lg text-sm">
+            <div className="flex items-center mt-4 p-3 bg-yellow-950/20 text-yellow-400 rounded-lg text-sm border border-yellow-900/50">
               <AlertTriangle className="w-5 h-5 mr-2 flex-shrink-0" />
               <div>
                 <span className="font-medium">You're a bit behind today!</span> Take a quick walk to boost your step

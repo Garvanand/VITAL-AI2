@@ -72,12 +72,23 @@ export async function getWorkoutEquipment(): Promise<string[]> {
       return MOCK_EQUIPMENT;
     }
 
-    const data = (await response.json()) as WorkoutEquipment[];
+    const data = await response.json();
 
-    // Extract just the equipment names from the response
-    const equipmentList = data.map((item) => item.equipment);
+    // Check if data is an array
+    if (Array.isArray(data)) {
+      // Check if it's an array of objects with equipment property
+      if (data.length > 0 && typeof data[0] === 'object' && 'equipment' in data[0]) {
+        return data.map((item) => item.equipment);
+      }
+      // Check if it's an array of strings
+      else if (data.length > 0 && typeof data[0] === 'string') {
+        return data;
+      }
+    }
 
-    return equipmentList;
+    // If data format is not recognized, use mock data
+    console.log('Unexpected API response format, using mock equipment data as fallback');
+    return MOCK_EQUIPMENT;
   } catch (error) {
     console.error('Error fetching workout equipment:', error);
 
