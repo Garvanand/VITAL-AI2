@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Footer } from '@/components/home/footer/footer';
 import { WorkoutProvider } from './context/workout-context';
 import { PageHeader } from './sections/page-header';
 import { WorkoutRecommendations } from './sections/workout-recommendations';
@@ -65,7 +66,7 @@ export function WorkoutPage() {
             <TabsContent value="dashboard" className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2 space-y-6">
-                  <WorkoutRecommendations />
+                  {/* <WorkoutRecommendations /> */}
                   <CalorieTracker />
                   <RecipeSuggestions />
                 </div>
@@ -75,8 +76,8 @@ export function WorkoutPage() {
                   <FastingTracker />
                   <WaterIntakeTracker />
                   <GoogleFitIntegration />
-                  <HeartHealthAssessment />
-                  <WorkoutEquipmentSection />
+                  {/* <HeartHealthAssessment /> */}
+                  {/* <WorkoutEquipmentSection /> */}
                 </div>
               </div>
             </TabsContent>

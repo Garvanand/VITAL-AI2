@@ -156,7 +156,7 @@ export function HeroSection() {
                 variant="outline"
                 className="gap-2 border-primary/30 hover:bg-primary/5 hover:border-primary/50 transition-all duration-300"
               >
-                Predict Health Risk
+                <Link href={'/predictive-analysis'}>Predict Health Risk</Link>
               </Button>
             </div>
 

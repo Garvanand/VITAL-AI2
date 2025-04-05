@@ -152,7 +152,7 @@ export function RecipeSuggestions() {
   const [recipes, setRecipes] = useState<RecipeSuggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [cuisineType, setCuisineType] = useState<'all' | 'indian'>('all');
+  const [cuisineType, setCuisineType] = useState<'all' | 'indian'>('indian'); // Default to Indian cuisine
 
   const [filters, setFilters] = useState({
     'high-protein': false,
@@ -209,9 +209,14 @@ export function RecipeSuggestions() {
         spiceLevels,
       });
 
+      // Add a timestamp to ensure we get fresh results each time
+      const timestamp = new Date().getTime();
+
       const indianRecipes = await getIndianRecipeSuggestions({
         dietType,
         mealType: mealTypes.length > 0 ? mealTypes[0] : undefined,
+        timestamp: timestamp.toString(), // Add timestamp to force a new request
+        spiceLevel: spiceLevels.length > 0 ? spiceLevels[0] : undefined,
         // We could pass more parameters here in the future
       });
 
@@ -286,13 +291,13 @@ export function RecipeSuggestions() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">Recipe Suggestions</h2>
+        <h2 className="text-2xl font-bold text-foreground">Recipe Suggestions</h2>
 
         <div className="flex items-center gap-2">
           {/* Cuisine Type Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-1.5">
+              <Button variant="outline" size="sm" className="gap-1.5 border-border hover:bg-card/50">
                 {cuisineType === 'indian' ? '🇮🇳 Indian' : '🌍 All Cuisines'}
               </Button>
             </DropdownMenuTrigger>
@@ -309,10 +314,10 @@ export function RecipeSuggestions() {
 
           {/* Search bar */}
           <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search recipes..."
-              className="pl-9 w-[180px] md:w-[240px]"
+              className="pl-9 w-[180px] md:w-[240px] bg-card/30 border-border"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -321,7 +326,7 @@ export function RecipeSuggestions() {
           {/* Filters dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-1.5">
+              <Button variant="outline" size="sm" className="gap-1.5 border-border hover:bg-card/50">
                 <Filter className="h-4 w-4" />
                 <span>Filter</span>
                 {activeFilterCount > 0 && (
@@ -415,8 +420,18 @@ export function RecipeSuggestions() {
 
           {/* Refresh button for Indian cuisine */}
           {cuisineType === 'indian' && (
-            <Button variant="outline" size="sm" onClick={fetchIndianRecipes} disabled={isLoading}>
-              {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCcw className="h-4 w-4" />}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={fetchIndianRecipes}
+              disabled={isLoading}
+              className="border-primary/30 hover:bg-primary/5 hover:border-primary/50"
+            >
+              {isLoading ? (
+                <Loader2 className="h-4 w-4 animate-spin text-primary" />
+              ) : (
+                <RefreshCcw className="h-4 w-4 text-primary" />
+              )}
             </Button>
           )}
         </div>
@@ -426,21 +441,24 @@ export function RecipeSuggestions() {
       {isLoading && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[1, 2, 3].map((_, index) => (
-            <div key={`skeleton-${index}`} className="border rounded-lg overflow-hidden">
-              <Skeleton className="h-48 w-full" />
+            <div
+              key={`skeleton-${index}`}
+              className="border border-border rounded-lg overflow-hidden bg-card/30 backdrop-blur-sm"
+            >
+              <Skeleton className="h-48 w-full bg-card/50" />
               <div className="p-4">
-                <Skeleton className="h-6 w-3/4 mb-2" />
-                <Skeleton className="h-4 w-full mb-3" />
-                <Skeleton className="h-4 w-5/6 mb-3" />
+                <Skeleton className="h-6 w-3/4 mb-2 bg-card/50" />
+                <Skeleton className="h-4 w-full mb-3 bg-card/50" />
+                <Skeleton className="h-4 w-5/6 mb-3 bg-card/50" />
                 <div className="flex justify-between mb-3">
-                  <Skeleton className="h-8 w-16" />
-                  <Skeleton className="h-8 w-16" />
-                  <Skeleton className="h-8 w-16" />
+                  <Skeleton className="h-8 w-16 bg-card/50" />
+                  <Skeleton className="h-8 w-16 bg-card/50" />
+                  <Skeleton className="h-8 w-16 bg-card/50" />
                 </div>
                 <div className="flex gap-1">
-                  <Skeleton className="h-6 w-16" />
-                  <Skeleton className="h-6 w-16" />
-                  <Skeleton className="h-6 w-16" />
+                  <Skeleton className="h-6 w-16 bg-card/50" />
+                  <Skeleton className="h-6 w-16 bg-card/50" />
+                  <Skeleton className="h-6 w-16 bg-card/50" />
                 </div>
               </div>
             </div>
@@ -450,11 +468,16 @@ export function RecipeSuggestions() {
 
       {/* Error state */}
       {error && !isLoading && (
-        <div className="text-center py-10 border border-dashed rounded-lg">
+        <div className="text-center py-10 border border-dashed border-border rounded-lg bg-card/20 backdrop-blur-sm">
           <AlertTriangle className="w-10 h-10 text-yellow-500 mx-auto mb-3" />
-          <h3 className="text-lg font-medium text-gray-900 mb-1">Couldn't Load Recipes</h3>
-          <p className="text-gray-500 max-w-sm mx-auto mb-4">{error}</p>
-          <Button variant="outline" size="sm" onClick={fetchIndianRecipes} className="mx-auto">
+          <h3 className="text-lg font-medium text-foreground mb-1">Couldn't Load Recipes</h3>
+          <p className="text-muted-foreground max-w-sm mx-auto mb-4">{error}</p>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={fetchIndianRecipes}
+            className="mx-auto border-primary/30 hover:bg-primary/5 hover:border-primary/50"
+          >
             Try Again
           </Button>
         </div>
@@ -462,10 +485,10 @@ export function RecipeSuggestions() {
 
       {/* No results state */}
       {!isLoading && !error && filteredRecipes.length === 0 && (
-        <div className="text-center py-10 border border-dashed rounded-lg">
-          <Utensils className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-          <h3 className="text-lg font-medium text-gray-900 mb-1">No Recipes Found</h3>
-          <p className="text-gray-500 max-w-sm mx-auto">
+        <div className="text-center py-10 border border-dashed border-border rounded-lg bg-card/20 backdrop-blur-sm">
+          <Utensils className="w-10 h-10 text-primary/30 mx-auto mb-3" />
+          <h3 className="text-lg font-medium text-foreground mb-1">No Recipes Found</h3>
+          <p className="text-muted-foreground max-w-sm mx-auto">
             Try adjusting your search or filters to find more recipes that match your criteria.
           </p>
         </div>
@@ -484,7 +507,7 @@ export function RecipeSuggestions() {
               <Dialog>
                 <DialogTrigger asChild>
                   <div
-                    className="rounded-lg overflow-hidden border cursor-pointer hover:shadow-md transition-shadow h-full flex flex-col"
+                    className="rounded-lg overflow-hidden border border-border bg-card/30 backdrop-blur-sm cursor-pointer hover:shadow-md hover:border-primary/20 transition-all duration-300 h-full flex flex-col"
                     onClick={() => setSelectedRecipe(recipe)}
                   >
                     <div className="relative h-48">
@@ -504,26 +527,26 @@ export function RecipeSuggestions() {
                     </div>
 
                     <div className="p-4 flex-grow">
-                      <h3 className="font-medium text-lg mb-1">
+                      <h3 className="font-medium text-lg mb-1 text-foreground">
                         {recipe.title}
                         {recipe.spiceLevel && cuisineType === 'indian' && (
                           <span className="ml-2">{getSpiceLevelIcon(recipe.spiceLevel)}</span>
                         )}
                       </h3>
-                      <p className="text-sm text-gray-600 mb-3 line-clamp-2">{recipe.description}</p>
+                      <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{recipe.description}</p>
 
                       <div className="flex justify-between mb-3">
                         <div>
-                          <div className="text-xs text-gray-500">Protein</div>
-                          <div className="font-medium">{recipe.protein}g</div>
+                          <div className="text-xs text-muted-foreground">Protein</div>
+                          <div className="font-medium text-foreground">{recipe.protein}g</div>
                         </div>
                         <div>
-                          <div className="text-xs text-gray-500">Carbs</div>
-                          <div className="font-medium">{recipe.carbs}g</div>
+                          <div className="text-xs text-muted-foreground">Carbs</div>
+                          <div className="font-medium text-foreground">{recipe.carbs}g</div>
                         </div>
                         <div>
-                          <div className="text-xs text-gray-500">Fat</div>
-                          <div className="font-medium">{recipe.fat}g</div>
+                          <div className="text-xs text-muted-foreground">Fat</div>
+                          <div className="font-medium text-foreground">{recipe.fat}g</div>
                         </div>
                       </div>
 
@@ -543,17 +566,19 @@ export function RecipeSuggestions() {
                   </div>
                 </DialogTrigger>
 
-                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-background border-border">
                   {selectedRecipe && (
                     <>
                       <DialogHeader>
-                        <DialogTitle className="flex items-center gap-2">
+                        <DialogTitle className="flex items-center gap-2 text-foreground">
                           {selectedRecipe.title}
                           {selectedRecipe.spiceLevel && cuisineType === 'indian' && (
                             <span>{getSpiceLevelIcon(selectedRecipe.spiceLevel)}</span>
                           )}
                         </DialogTitle>
-                        <DialogDescription>{selectedRecipe.description}</DialogDescription>
+                        <DialogDescription className="text-muted-foreground">
+                          {selectedRecipe.description}
+                        </DialogDescription>
                       </DialogHeader>
 
                       <div className="mt-4">
@@ -566,35 +591,35 @@ export function RecipeSuggestions() {
                         </div>
 
                         <div className="grid grid-cols-4 gap-3 mb-6">
-                          <div className="p-3 text-center bg-gray-50 rounded-lg">
-                            <div className="text-xs text-gray-500 mb-1">Time</div>
-                            <div className="font-medium flex items-center justify-center gap-1">
-                              <Clock className="w-4 h-4 text-gray-500" />
+                          <div className="p-3 text-center bg-card/30 backdrop-blur-sm rounded-lg border border-border">
+                            <div className="text-xs text-muted-foreground mb-1">Time</div>
+                            <div className="font-medium flex items-center justify-center gap-1 text-foreground">
+                              <Clock className="w-4 h-4 text-muted-foreground" />
                               <span>{selectedRecipe.prepTime} min</span>
                             </div>
                           </div>
-                          <div className="p-3 text-center bg-gray-50 rounded-lg">
-                            <div className="text-xs text-gray-500 mb-1">Calories</div>
-                            <div className="font-medium flex items-center justify-center gap-1">
+                          <div className="p-3 text-center bg-card/30 backdrop-blur-sm rounded-lg border border-border">
+                            <div className="text-xs text-muted-foreground mb-1">Calories</div>
+                            <div className="font-medium flex items-center justify-center gap-1 text-foreground">
                               <Flame className="w-4 h-4 text-orange-500" />
                               <span>{selectedRecipe.calories}</span>
                             </div>
                           </div>
-                          <div className="p-3 text-center bg-gray-50 rounded-lg">
-                            <div className="text-xs text-gray-500 mb-1">Protein</div>
-                            <div className="font-medium">{selectedRecipe.protein}g</div>
+                          <div className="p-3 text-center bg-card/30 backdrop-blur-sm rounded-lg border border-border">
+                            <div className="text-xs text-muted-foreground mb-1">Protein</div>
+                            <div className="font-medium text-foreground">{selectedRecipe.protein}g</div>
                           </div>
-                          <div className="p-3 text-center bg-gray-50 rounded-lg">
-                            <div className="text-xs text-gray-500 mb-1">Carbs</div>
-                            <div className="font-medium">{selectedRecipe.carbs}g</div>
+                          <div className="p-3 text-center bg-card/30 backdrop-blur-sm rounded-lg border border-border">
+                            <div className="text-xs text-muted-foreground mb-1">Carbs</div>
+                            <div className="font-medium text-foreground">{selectedRecipe.carbs}g</div>
                           </div>
                         </div>
 
                         {selectedRecipe.spiceLevel && cuisineType === 'indian' && (
-                          <div className="mb-4 p-3 bg-orange-50 rounded-lg">
-                            <div className="text-sm font-medium flex items-center gap-2">
+                          <div className="mb-4 p-3 bg-orange-950/20 rounded-lg border border-orange-900/20">
+                            <div className="text-sm font-medium flex items-center gap-2 text-foreground">
                               <span>Spice Level:</span>
-                              <span className="text-orange-600">
+                              <span className="text-orange-400">
                                 {selectedRecipe.spiceLevel} {getSpiceLevelIcon(selectedRecipe.spiceLevel)}
                               </span>
                             </div>
@@ -611,14 +636,14 @@ export function RecipeSuggestions() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div>
-                            <h4 className="font-medium text-lg mb-3 flex items-center gap-2">
-                              <Tag className="w-4 h-4" />
+                            <h4 className="font-medium text-lg mb-3 flex items-center gap-2 text-foreground">
+                              <Tag className="w-4 h-4 text-primary" />
                               Ingredients
                             </h4>
                             <ul className="space-y-2">
                               {selectedRecipe.ingredients.map((ingredient: string, i: number) => (
-                                <li key={i} className="flex items-start gap-2 text-sm">
-                                  <Check className="w-4 h-4 text-green-500 mt-0.5" />
+                                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                  <Check className="w-4 h-4 text-primary mt-0.5" />
                                   <span>{ingredient}</span>
                                 </li>
                               ))}
@@ -626,14 +651,14 @@ export function RecipeSuggestions() {
                           </div>
 
                           <div>
-                            <h4 className="font-medium text-lg mb-3 flex items-center gap-2">
-                              <Utensils className="w-4 h-4" />
+                            <h4 className="font-medium text-lg mb-3 flex items-center gap-2 text-foreground">
+                              <Utensils className="w-4 h-4 text-primary" />
                               Instructions
                             </h4>
                             <ol className="space-y-3">
                               {selectedRecipe.instructions.map((step: string, i: number) => (
-                                <li key={i} className="flex items-start gap-2 text-sm">
-                                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center text-xs">
+                                <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+                                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary text-background flex items-center justify-center text-xs">
                                     {i + 1}
                                   </div>
                                   <span className="flex-1">{step}</span>
