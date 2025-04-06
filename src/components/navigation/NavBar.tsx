@@ -96,7 +96,7 @@ const navItems: NavItem[] = [
       { label: 'Contact', href: '/help/contact' },
     ],
   },
-  { label: 'Document', href: '/document' },
+  { label: 'Document', href: '/documents' },
   { label: 'Workout', href: '/workout' },
 ];
 
